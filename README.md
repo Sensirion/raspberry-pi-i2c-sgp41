@@ -50,6 +50,7 @@ the following pins to connect your SGP41:
       SRAW NOx: conditioning
       SRAW VOC: 25846
       SRAW NOx: conditioning
+      ...
       SRAW VOC: 25951
       SRAW NOx: 15656
       SRAW VOC: 26153
