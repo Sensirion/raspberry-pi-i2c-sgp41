@@ -1,7 +1,7 @@
 /*
- * I2C-Generator: 0.2.0
+ * I2C-Generator: 0.3.0
  * Yaml Version: 0.1.0
- * Template Version: local build
+ * Template Version: 0.7.0-62-g3d691f9
  */
 /*
  * Copyright (c) 2021, Sensirion AG
@@ -71,9 +71,9 @@ int main(void) {
 
     uint16_t test_result;
 
-    error = sgp41_measure_test(&test_result);
+    error = sgp41_execute_self_test(&test_result);
     if (error) {
-        printf("Error executing sgp41_measure_test(): %i\n", error);
+        printf("Error executing sgp41_execute_self_test(): %i\n", error);
     } else {
         printf("Test result: %u\n", test_result);
     }
@@ -84,9 +84,9 @@ int main(void) {
 
         sensirion_i2c_hal_sleep_usec(1000000);
 
-        error = sgp41_conditioning(default_rh, default_t, &sraw_voc);
+        error = sgp41_execute_conditioning(default_rh, default_t, &sraw_voc);
         if (error) {
-            printf("Error executing sgp41_conditioning(): "
+            printf("Error executing sgp41_execute_conditioning(): "
                    "%i\n",
                    error);
         } else {
@@ -96,15 +96,16 @@ int main(void) {
     }
 
     // Start Measurement
-    for (;;) {
+    for (int i = 0; i < 60; i++) {
         uint16_t sraw_voc;
         uint16_t sraw_nox;
 
         sensirion_i2c_hal_sleep_usec(1000000);
 
-        error = sgp41_measure_raw(default_rh, default_t, &sraw_voc, &sraw_nox);
+        error = sgp41_measure_raw_signals(default_rh, default_t, &sraw_voc,
+                                          &sraw_nox);
         if (error) {
-            printf("Error executing sgp41_measure_raw(): "
+            printf("Error executing sgp41_measure_raw_signals(): "
                    "%i\n",
                    error);
         } else {
