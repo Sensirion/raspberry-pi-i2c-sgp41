@@ -60,6 +60,14 @@ the following pins to connect your SGP41:
       ...
       ```
 
+## Conditioning
+
+After each restart of the sensor or when the hotplates have been switched off, the conditioning command must
+be called from idle mode. The conditioning heats the hotplate of the NOx pixel to a different temperature compared
+to the measurement mode enabling a faster switch-on thereafter.
+
+It is recommended to execute the conditioning for 10s, but **10s must not be exceeded** to avoid damage to the sensing material.
+
 ## Troubleshooting
 
 ### Initialization failed
