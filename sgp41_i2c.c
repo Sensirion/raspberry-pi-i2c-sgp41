@@ -55,7 +55,7 @@ int16_t sgp41_execute_conditioning(uint16_t default_rh, uint16_t default_t,
     offset =
         sensirion_i2c_add_uint16_t_to_buffer(&buffer[0], offset, default_t);
 
-    error = sensirion_i2c_write_data(SGP41_I2C_ADDRESS, &buffer[0], offset);
+    error = sensirion_i2c_write_dataaa(SGP41_I2C_ADDRESS, &buffer[0], offset);
     if (error) {
         return error;
     }
